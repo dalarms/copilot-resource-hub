@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your go-to hub for Microsoft Copilot and Copilot Studio resources — downloadable guides, curated learning paths, and industry use cases.">
+  <title>Copilot + Copilot Studio Resource Hub</title>
+  <style>
+    /* ============================================
+       CSS CUSTOM PROPERTIES
+       ============================================ */
+    :root {
+      --color-primary: #2563EB;
+      --color-primary-dark: #1D4ED8;
+      --color-primary-light: #DBEAFE;
+      --color-accent: #0EA5E9;
+      --color-accent-dark: #0284C7;
+      --color-hero-start: #0F172A;
+      --color-hero-mid: #1E3A5F;
+      --color-hero-end: #2563EB;
+      --color-text: #0F172A;
+      --color-text-muted: #475569;
+      --color-text-light: #64748B;
+      --color-bg: #FFFFFF;
+      --color-bg-alt: #F8FAFC;
+      --color-bg-dark: #0F172A;
+      --color-border: #E2E8F0;
+      --color-border-light: #F1F5F9;
+      --color-success: #059669;
+      --color-success-light: #D1FAE5;
+      --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --max-width: 1200px;
+      --nav-height: 64px;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 24px);
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Focus styles for accessibility */
+    :focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ============================================
+       LAYOUT UTILITIES
+       ============================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section--alt {
+      background: var(--color-bg-alt);
+    }
+
+    .section__header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section__title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 12px;
+    }
+
+    .section__subtitle {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      height: var(--nav-height);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .nav--scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .nav__brand:hover {
+      text-decoration: none;
+    }
+
+    .nav__brand svg {
+      flex-shrink: 0;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav__link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+      padding: 4px 0;
+    }
+
+    .nav__link:hover,
+    .nav__link--active {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--color-text);
+    }
+
+    /* Mobile nav */
+    .nav__mobile {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      padding: 16px 24px;
+    }
+
+    .nav__mobile.is-open {
+      display: block;
+    }
+
+    .nav__mobile-list {
+      list-style: none;
+    }
+
+    .nav__mobile-list li {
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .nav__mobile-list li:last-child {
+      border-bottom: none;
+    }
+
+    .nav__mobile-link {
+      display: block;
+      padding: 12px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .nav__mobile-link:hover {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      background: linear-gradient(135deg, var(--color-hero-start) 0%, var(--color-hero-mid) 50%, var(--color-hero-end) 100%);
+      color: #FFFFFF;
+      padding: 96px 0 80px;
+      text-align: center;
+    }
+
+    .hero__headline {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero__greeting {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
+
+    .hero__subhead {
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: #FFFFFF;
+      color: var(--color-primary);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-primary-light);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .btn--outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #FFFFFF;
+    }
+
+    .hero__summary {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+    }
+
+    .hero__summary p {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .hero__summary ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero__summary li {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.8);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .hero__summary li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    /* ============================================
+       BENEFITS
+       ============================================ */
+    .benefits__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .benefit-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .benefit-card__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--color-primary);
+    }
+
+    .benefit-card__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .benefit-card__text {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       WHAT'S INCLUDED
+       ============================================ */
+    .included__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .included-item {
+      padding: 24px 16px;
+    }
+
+    .included-item__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: #FFFFFF;
+    }
+
+    .included-item__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .included-item__text {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================
+       RESOURCE LIBRARY (PDF CARDS)
+       ============================================ */
+    .resources__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .resource-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .resource-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .resource-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEF2F2;
+      color: #DC2626;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+
+    .resource-card__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--color-text);
+    }
+
+    .resource-card__desc {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .resource-card__meta {
+      font-size: 0.8125rem;
+      color: var(--color-text-light);
+      margin-bottom: 20px;
+    }
+
+    .resource-card__actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn--download {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+    }
+
+    .btn--download:hover {
+      background: var(--color-primary-dark);
+    }
+
+    .resource-card__open-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    /* ============================================
+       BROWSE BY CATEGORY (TILES)
+       ============================================ */
+    .categories__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .category-tile {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .category-tile:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .category-tile__icon {
+      width: 44px;
+      height: 44px;
+      background: var(--color-primary-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--color-primary);
+    }
+
+    .category-tile__title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .category-tile__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .category-tile__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .category-tile__links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .category-tile__links a::before {
+      content: "\2192";
+      font-size: 0.8em;
+    }
+
+    /* ============================================
+       INDUSTRY FOCUS (ACCORDIONS)
+       ============================================ */
+    .accordion {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .accordion__item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .accordion__header {
+      margin: 0;
+    }
+
+    .accordion__trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-family);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--color-text);
+      text-align: left;
+      transition: background 0.15s ease;
+    }
+
+    .accordion__trigger:hover {
+      background: var(--color-bg-alt);
+    }
+
+    .accordion__trigger:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: -3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .accordion__icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.25s ease;
+      color: var(--color-text-muted);
+    }
+
+    .accordion__trigger[aria-expanded="true"] .accordion__icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion__panel {
+      padding: 0 24px 24px;
+    }
+
+    .accordion__panel[hidden] {
+      display: none;
+    }
+
+    .accordion__panel h4 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+      margin-top: 16px;
+    }
+
+    .accordion__panel h4:first-child {
+      margin-top: 0;
+    }
+
+    .accordion__panel ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 0;
+    }
+
+    .accordion__panel ul li {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .accordion__panel ul li::before {
+      content: "\2022";
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .accordion__panel .fit-line {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+      font-style: italic;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       FOOTER CTA + INFO
+       ============================================ */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--color-hero-start) 0%, var(--color-hero-mid) 60%, var(--color-primary) 100%);
+      color: #FFFFFF;
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .footer-cta__headline {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .footer-cta__subtext {
+      font-size: 1.0625rem;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .footer-cta__card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 28px 40px;
+      margin-bottom: 8px;
+    }
+
+    .footer-cta__name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .footer-cta__links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .footer-cta__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .footer-cta__link:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .footer-cta__link--email {
+      background: #FFFFFF;
+      color: var(--color-primary);
+    }
+
+    .footer-cta__link--email:hover {
+      background: var(--color-primary-light);
+    }
+
+    .footer-cta__link--linkedin {
+      background: transparent;
+      color: #FFFFFF;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-cta__link--linkedin:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #FFFFFF;
+    }
+
+    .footer {
+      background: var(--color-bg-dark);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 24px 0;
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer__disclaimer {
+      font-size: 0.8125rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .footer__bottom {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .benefits__grid,
+      .categories__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links {
+        display: none;
+      }
+
+      .nav__toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 64px 0 56px;
+      }
+
+      .hero__headline {
+        font-size: 2rem;
+      }
+
+      .hero__subhead {
+        font-size: 1.0625rem;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .section__title {
+        font-size: 1.625rem;
+      }
+
+      .benefits__grid,
+      .included__grid,
+      .categories__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resources__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer__inner {
+        flex-direction: column;
+      }
+
+      .footer__contact {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero__headline {
+        font-size: 1.625rem;
+      }
+
+      .hero__summary {
+        padding: 16px 20px;
+      }
+
+      .accordion__trigger {
+        padding: 14px 16px;
+        font-size: 1rem;
+      }
+
+      .accordion__panel {
+        padding: 0 16px 20px;
+      }
+    }
+
+    /* ============================================
+       PRINT
+       ============================================ */
+    @media print {
+      .nav, .hero__ctas, .nav__toggle {
+        display: none;
+      }
+
+      .hero {
+        background: #FFFFFF;
+        color: #000000;
+        padding: 24px 0;
+      }
+
+      .hero__subhead {
+        color: #333;
+      }
+
+      .accordion__panel[hidden] {
+        display: block !important;
+      }
+
+      .section {
+        padding: 24px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION
+       ========================================== -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="#" class="nav__brand" aria-label="Copilot Resource Hub home">
+        <!-- Microsoft-style logo mark -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="10" height="10" rx="2" fill="#F25022"/>
+          <rect x="13" y="1" width="10" height="10" rx="2" fill="#7FBA00"/>
+          <rect x="1" y="13" width="10" height="10" rx="2" fill="#00A4EF"/>
+          <rect x="13" y="13" width="10" height="10" rx="2" fill="#FFB900"/>
+        </svg>
+        Copilot Resource Hub
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#benefits" class="nav__link">Benefits</a></li>
+        <li><a href="#resources" class="nav__link">Resources</a></li>
+        <li><a href="#categories" class="nav__link">Categories</a></li>
+        <li><a href="#industries" class="nav__link">Industries</a></li>
+      </ul>
+
+      <button class="nav__toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="nav__mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <ul class="nav__mobile-list" role="list">
+          <li><a href="#benefits" class="nav__mobile-link">Benefits</a></li>
+          <li><a href="#resources" class="nav__mobile-link">Resources</a></li>
+          <li><a href="#categories" class="nav__mobile-link">Categories</a></li>
+          <li><a href="#industries" class="nav__mobile-link">Industries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO
+       ========================================== -->
+  <header class="hero" id="hero">
+    <div class="container">
+      <h1 class="hero__headline"><span id="hero-greeting"></span>Accelerate Every Workflow with<br>Microsoft Copilot + Copilot Studio</h1>
+      <p class="hero__subhead">
+        Help your teams move faster, deliver more consistent outputs, and build AI-powered agents that connect to your data, all with enterprise-grade governance built in.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#resources" class="btn btn--primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download the resource pack
+        </a>
+        <a href="#industries" class="btn btn--outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Explore industry use cases
+        </a>
+      </div>
+
+      <div class="hero__summary">
+        <p>In this hub you'll find:</p>
+        <ul>
+          <li>Downloadable PDF guides, playbooks, and one-pagers</li>
+          <li>Curated learning paths, demos, and enablement resources</li>
+          <li>Industry-specific use cases with real-world outcomes</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       BENEFITS
+       ========================================== -->
+  <section class="section section--alt" id="benefits" aria-labelledby="benefits-title">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="benefits-title">Why Copilot + Copilot Studio?</h2>
+        <p class="section__subtitle">Two products, one AI strategy &mdash; designed to meet your teams where they work and scale with your business.</p>
+      </div>
+
+      <div class="benefits__grid">
+        <!-- Card 1: Why Copilot -->
+        <div class="benefit-card">
+          <div class="benefit-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="benefit-card__title">Why Microsoft Copilot</h3>
+          <p class="benefit-card__text">
+            Microsoft Copilot is designed to help you draft, summarize, analyze, and accelerate workflows &mdash; right inside the Microsoft 365 apps your teams already use. It can help reduce repetitive tasks and free up time for higher-value work.
+          </p>
+        </div>
+
+        <!-- Card 2: Why Copilot Studio -->
+        <div class="benefit-card">
+          <div class="benefit-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.912 5.813h6.112l-4.968 3.624L17.07 18.25 12 14.627l-5.07 3.624 2.014-5.813L3.976 8.813h6.112z"/></svg>
+          </div>
+          <h3 class="benefit-card__title">Why Copilot Studio</h3>
+          <p class="benefit-card__text">
+            Copilot Studio helps you build custom agents tailored to your business processes. With low-code orchestration, enterprise connectors, and built-in governance, teams can often deploy agents in days rather than months.
+          </p>
+        </div>
+
+        <!-- Card 3: Better Together -->
+        <div class="benefit-card">
+          <div class="benefit-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </div>
+          <h3 class="benefit-card__title">Better Together</h3>
+          <p class="benefit-card__text">
+            When you combine Copilot with Copilot Studio, you can extend built-in AI capabilities, ground responses in your own data, and customize agent behavior &mdash; all while maintaining enterprise-grade security and compliance controls.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       WHAT'S INCLUDED
+       ========================================== -->
+  <section class="section" id="included" aria-labelledby="included-title">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="included-title">What's Included</h2>
+        <p class="section__subtitle">Everything you need to evaluate, adopt, and scale Copilot and Copilot Studio.</p>
+      </div>
+
+      <div class="included__grid">
+        <div class="included-item">
+          <div class="included-item__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="included-item__title">Practical PDF Guides</h3>
+          <p class="included-item__text">Downloadable templates, playbooks, and one-pagers for governance, personas, and business impact assessment.</p>
+        </div>
+
+        <div class="included-item">
+          <div class="included-item__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="included-item__title">Curated Learning Paths</h3>
+          <p class="included-item__text">Hand-picked links to demos, workshops, adoption kits, and implementation guides from Microsoft.</p>
+        </div>
+
+        <div class="included-item">
+          <div class="included-item__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 class="included-item__title">Industry Use Cases</h3>
+          <p class="included-item__text">Quick-scan inspiration across 10 industries with example scenarios and desired business outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       RESOURCE LIBRARY (5 PDF CARDS)
+       ========================================== -->
+  <section class="section section--alt" id="resources" aria-labelledby="resources-title">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="resources-title">Resource Library</h2>
+        <p class="section__subtitle">Download these guides to jumpstart your Copilot and Copilot Studio journey.</p>
+      </div>
+
+      <div class="resources__grid">
+
+        <!-- PDF Card 1 -->
+        <div class="resource-card">
+          <span class="resource-card__badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
+            PDF
+          </span>
+          <h3 class="resource-card__title">AI Agents 2025 Overview</h3>
+          <p class="resource-card__desc">Explore the evolving landscape of AI agents and discover how they can help transform your organization's productivity and decision-making workflows.</p>
+          <p class="resource-card__meta">Updated: <!-- PLACEHOLDER: Month YYYY --> April 2025 &bull; Format: PDF</p>
+          <div class="resource-card__actions">
+            <a href="assets/pdfs/AIAgents2025.pdf" class="btn btn--download" download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="assets/pdfs/AIAgents2025.pdf" class="resource-card__open-link" target="_blank" rel="noopener noreferrer">Open in new tab &nearr;</a>
+          </div>
+        </div>
+
+        <!-- PDF Card 2 -->
+        <div class="resource-card">
+          <span class="resource-card__badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
+            PDF
+          </span>
+          <h3 class="resource-card__title">Power Platform Business Impact Assessment</h3>
+          <p class="resource-card__desc">A visual infographic designed to help you measure and communicate the business value of Power Platform and Copilot Studio investments to stakeholders.</p>
+          <p class="resource-card__meta">Updated: <!-- PLACEHOLDER: Month YYYY --> April 2025 &bull; Format: PDF</p>
+          <div class="resource-card__actions">
+            <a href="assets/pdfs/Power-Platform-Business-Impact-Assessment-Infographic.pdf" class="btn btn--download" download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="assets/pdfs/Power-Platform-Business-Impact-Assessment-Infographic.pdf" class="resource-card__open-link" target="_blank" rel="noopener noreferrer">Open in new tab &nearr;</a>
+          </div>
+        </div>
+
+        <!-- PDF Card 3 -->
+        <div class="resource-card">
+          <span class="resource-card__badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
+            PDF
+          </span>
+          <h3 class="resource-card__title">Governance &amp; Security Workshop</h3>
+          <p class="resource-card__desc">Best practices for enterprise governance, security, and compliance when deploying Power Platform and Copilot Studio solutions at scale.</p>
+          <p class="resource-card__meta">Updated: <!-- PLACEHOLDER: Month YYYY --> April 2025 &bull; Format: PDF</p>
+          <div class="resource-card__actions">
+            <a href="assets/pdfs/Power-Platform-Governance-Security-Workshop.pdf" class="btn btn--download" download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="assets/pdfs/Power-Platform-Governance-Security-Workshop.pdf" class="resource-card__open-link" target="_blank" rel="noopener noreferrer">Open in new tab &nearr;</a>
+          </div>
+        </div>
+
+        <!-- PDF Card 4 -->
+        <div class="resource-card">
+          <span class="resource-card__badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
+            PDF
+          </span>
+          <h3 class="resource-card__title">Copilot Studio Personas &amp; Use Cases</h3>
+          <p class="resource-card__desc">A quick-reference one-pager mapping key business personas to high-impact Copilot Studio use cases and scenarios you can share with decision-makers.</p>
+          <p class="resource-card__meta">Updated: <!-- PLACEHOLDER: Month YYYY --> April 2025 &bull; Format: PDF</p>
+          <div class="resource-card__actions">
+            <a href="assets/pdfs/Microsoft-Copilot-Studio-Personas-Use-Cases.pdf" class="btn btn--download" download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="assets/pdfs/Microsoft-Copilot-Studio-Personas-Use-Cases.pdf" class="resource-card__open-link" target="_blank" rel="noopener noreferrer">Open in new tab &nearr;</a>
+          </div>
+        </div>
+
+        <!-- PDF Card 5 -->
+        <div class="resource-card">
+          <span class="resource-card__badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
+            PDF
+          </span>
+          <h3 class="resource-card__title">Copilot Studio Governance One-Pager</h3>
+          <p class="resource-card__desc">Concise governance guidelines designed to help IT and business teams deploy Copilot Studio responsibly, consistently, and at enterprise scale.</p>
+          <p class="resource-card__meta">Updated: <!-- PLACEHOLDER: Month YYYY --> April 2025 &bull; Format: PDF</p>
+          <div class="resource-card__actions">
+            <a href="assets/pdfs/Copilot-Studio-Governance-One-Pager.pdf" class="btn btn--download" download>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a href="assets/pdfs/Copilot-Studio-Governance-One-Pager.pdf" class="resource-card__open-link" target="_blank" rel="noopener noreferrer">Open in new tab &nearr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       BROWSE BY CATEGORY (TILES)
+       ========================================== -->
+  <section class="section" id="categories" aria-labelledby="categories-title">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="categories-title">Browse by Category</h2>
+        <p class="section__subtitle">Jump directly to the resources that match your learning goals.</p>
+      </div>
+
+      <div class="categories__grid">
+
+        <!-- Category Tile 1 ================================================
+             To add a new category: duplicate this tile block and update the
+             title, description, icon, and links.
+             ================================================================ -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <h3 class="category-tile__title">On-Demand Learning</h3>
+          <p class="category-tile__desc">Watch recorded deep-dive sessions and explore interactive demos at your own pace.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://mspowerplatform.eventbuilder.com/event/84378/occurrence/79870/recording?rauth=972.4866480.6d501ae070a27e55e8068fcd02cd070323ac02fc01f69e2f01622d4348649cdc" target="_blank" rel="noopener noreferrer">Copilot Deep Dive Session</a></li>
+            <li><a href="https://aka.ms/CopilotStudioDemo" target="_blank" rel="noopener noreferrer">Copilot Studio Interactive Demo</a></li>
+          </ul>
+        </div>
+
+        <!-- Category Tile 2 -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="category-tile__title">Copilots &amp; Agents Explained</h3>
+          <p class="category-tile__desc">Understand what Copilot AI agents are and how to plan your implementation.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://www.microsoft.com/en-us/microsoft-copilot/copilot-101/copilot-ai-agents" target="_blank" rel="noopener noreferrer">What Are Copilot AI Agents?</a></li>
+            <li><a href="https://aka.ms/CopilotStudioImplementationGuide" target="_blank" rel="noopener noreferrer">Copilot Studio Implementation Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Category Tile 3 -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <h3 class="category-tile__title">Build Your Own Agent</h3>
+          <p class="category-tile__desc">Step-by-step guidance to create and deploy your first agent with Copilot Studio.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-get-started" target="_blank" rel="noopener noreferrer">Get Started with Copilot Studio</a></li>
+          </ul>
+        </div>
+
+        <!-- Category Tile 4 -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3 class="category-tile__title">Copilot Success Kit</h3>
+          <p class="category-tile__desc">Adoption, readiness, governance, and enablement resources for IT and business teams.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://adoption.microsoft.com/en-us/ai-agents/copilot-studio/" target="_blank" rel="noopener noreferrer">Copilot Studio Adoption Hub</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/kit-overview" target="_blank" rel="noopener noreferrer">Success Kit Overview</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/kit-install" target="_blank" rel="noopener noreferrer">Install the Copilot Studio Kit</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/power-platform/guidance/coe/overview" target="_blank" rel="noopener noreferrer">CoE Starter Kit Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Category Tile 5 -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 class="category-tile__title">Agent in a Day Workshops</h3>
+          <p class="category-tile__desc">Instructor-led, hands-on sessions designed to help you build an agent in a single day.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://learn.microsoft.com/en-us/training/paths/agents-online-workshop/" target="_blank" rel="noopener noreferrer">Agents Online Workshop</a></li>
+          </ul>
+        </div>
+
+        <!-- Category Tile 6 -->
+        <div class="category-tile">
+          <div class="category-tile__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+          </div>
+          <h3 class="category-tile__title">Events &amp; Training</h3>
+          <p class="category-tile__desc">Ongoing Microsoft-led sessions and community workshops to deepen your Copilot skills.</p>
+          <ul class="category-tile__links">
+            <li><a href="https://www.microsoft.com/en-us/events/category/microsoft-365-copilot-training" target="_blank" rel="noopener noreferrer">Microsoft 365 Copilot Training Events</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       INDUSTRY FOCUS (ACCORDIONS)
+       ========================================== -->
+  <section class="section section--alt" id="industries" aria-labelledby="industries-title">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title" id="industries-title">Industry Focus</h2>
+        <p class="section__subtitle">See how organizations across industries are using Copilot and Copilot Studio to drive measurable outcomes.</p>
+      </div>
+
+      <div class="accordion" role="list">
+
+        <!-- Accordion Item 1: Financial Services -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-financial" id="trigger-financial">
+              Financial Services
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-financial" role="region" aria-labelledby="trigger-financial" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Automated compliance document review and summarization</li>
+              <li>Client onboarding assistant with guided data collection</li>
+              <li>Risk assessment report generation from structured data</li>
+              <li>Meeting prep and follow-up for portfolio reviews</li>
+              <li>Regulatory change monitoring and impact summarization</li>
+              <li>Loan processing workflow acceleration</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster regulatory compliance turnaround</li>
+              <li>Reduced manual document processing effort</li>
+              <li>Improved client response times</li>
+              <li>More consistent risk assessments across teams</li>
+              <li>Stronger audit readiness</li>
+            </ul>
+            <p class="fit-line">Good fit for: Compliance teams, relationship managers, risk analysts, loan officers</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2: Healthcare and Life Sciences -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-healthcare" id="trigger-healthcare">
+              Healthcare and Life Sciences
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-healthcare" role="region" aria-labelledby="trigger-healthcare" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Patient communication drafting and scheduling</li>
+              <li>Clinical trial document summarization</li>
+              <li>Provider credentialing workflow automation</li>
+              <li>Medical records data extraction and structuring</li>
+              <li>Care plan documentation assistance</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Reduced administrative burden on clinicians</li>
+              <li>Faster patient communication turnaround</li>
+              <li>Improved documentation accuracy</li>
+              <li>Streamlined regulatory submissions</li>
+              <li>Better care coordination across teams</li>
+            </ul>
+            <p class="fit-line">Good fit for: Clinical operations, care coordinators, research teams, compliance officers</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3: Manufacturing -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-manufacturing" id="trigger-manufacturing">
+              Manufacturing
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-manufacturing" role="region" aria-labelledby="trigger-manufacturing" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Quality control report generation and trend analysis</li>
+              <li>Supply chain status summaries and alerts</li>
+              <li>Maintenance request triage and routing</li>
+              <li>Safety incident documentation and follow-up</li>
+              <li>Vendor communication management</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Reduced downtime through faster issue resolution</li>
+              <li>Improved supply chain visibility</li>
+              <li>Consistent safety documentation</li>
+              <li>Faster supplier response cycles</li>
+              <li>Better production planning</li>
+            </ul>
+            <p class="fit-line">Good fit for: Plant managers, quality engineers, supply chain leads, safety officers</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 4: Automotive -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-automotive" id="trigger-automotive">
+              Automotive
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-automotive" role="region" aria-labelledby="trigger-automotive" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Dealer communication and inquiry automation</li>
+              <li>Vehicle recall documentation and tracking</li>
+              <li>Customer feedback analysis and routing</li>
+              <li>Warranty claim processing acceleration</li>
+              <li>Service appointment coordination</li>
+              <li>Parts inventory status reporting</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster dealer response times</li>
+              <li>Streamlined recall management processes</li>
+              <li>Improved customer satisfaction insights</li>
+              <li>Reduced warranty processing turnaround</li>
+            </ul>
+            <p class="fit-line">Good fit for: Dealer operations, customer experience teams, warranty administrators, service managers</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 5: Technical and Professional Services -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-professional" id="trigger-professional">
+              Technical and Professional Services
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-professional" role="region" aria-labelledby="trigger-professional" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Proposal and statement-of-work drafting</li>
+              <li>Client deliverable review and quality checks</li>
+              <li>Time tracking and billing summary generation</li>
+              <li>Knowledge base maintenance and search</li>
+              <li>Project status reporting for stakeholders</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster proposal turnaround times</li>
+              <li>More consistent deliverable quality</li>
+              <li>Improved utilization tracking</li>
+              <li>Better knowledge sharing across teams</li>
+              <li>Reduced administrative overhead</li>
+            </ul>
+            <p class="fit-line">Good fit for: Consultants, project managers, practice leads, business development teams</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 6: Consumer Media and Telecom -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-media" id="trigger-media">
+              Consumer Media and Telecom
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-media" role="region" aria-labelledby="trigger-media" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Content scheduling and editorial planning</li>
+              <li>Customer service response drafting</li>
+              <li>Subscriber analytics summarization</li>
+              <li>Campaign performance reporting</li>
+              <li>Network issue communication drafting</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster content production cycles</li>
+              <li>Improved customer service response quality</li>
+              <li>Better audience and subscriber insights</li>
+              <li>Reduced churn through proactive communication</li>
+            </ul>
+            <p class="fit-line">Good fit for: Content teams, customer support, marketing analysts, network operations</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 7: Energy -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-energy" id="trigger-energy">
+              Energy
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-energy" role="region" aria-labelledby="trigger-energy" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Regulatory filing preparation and review</li>
+              <li>Field operations reporting and summarization</li>
+              <li>Environmental compliance monitoring</li>
+              <li>Asset management documentation</li>
+              <li>Safety training coordination</li>
+              <li>Stakeholder update drafting</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster regulatory submissions</li>
+              <li>Improved field operations visibility</li>
+              <li>Better environmental compliance tracking</li>
+              <li>Reduced safety incident response time</li>
+              <li>More consistent stakeholder communication</li>
+            </ul>
+            <p class="fit-line">Good fit for: Regulatory affairs, field operations, HSE teams, asset managers</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 8: Real Estate and Transport -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-realestate" id="trigger-realestate">
+              Real Estate and Transport
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-realestate" role="region" aria-labelledby="trigger-realestate" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Property listing generation and enrichment</li>
+              <li>Lease agreement review assistance</li>
+              <li>Route optimization reporting</li>
+              <li>Tenant communication management</li>
+              <li>Fleet maintenance scheduling</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster property listing turnaround</li>
+              <li>Improved lease processing efficiency</li>
+              <li>Better fleet utilization</li>
+              <li>Reduced tenant response times</li>
+              <li>More informed investment decisions</li>
+            </ul>
+            <p class="fit-line">Good fit for: Property managers, leasing agents, fleet coordinators, investment analysts</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 9: Nonprofit -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-nonprofit" id="trigger-nonprofit">
+              Nonprofit
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-nonprofit" role="region" aria-labelledby="trigger-nonprofit" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Grant proposal drafting and review</li>
+              <li>Donor communication personalization</li>
+              <li>Volunteer coordination and scheduling</li>
+              <li>Impact report generation</li>
+              <li>Fundraising campaign planning</li>
+              <li>Board meeting preparation</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Faster grant application cycles</li>
+              <li>Improved donor engagement</li>
+              <li>Better volunteer utilization</li>
+              <li>More compelling impact reporting</li>
+              <li>Reduced administrative costs</li>
+            </ul>
+            <p class="fit-line">Good fit for: Development teams, program managers, volunteer coordinators, executive directors</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 10: General Business -->
+        <div class="accordion__item" role="listitem">
+          <h3 class="accordion__header">
+            <button class="accordion__trigger" aria-expanded="false" aria-controls="panel-general" id="trigger-general">
+              General Business
+              <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </h3>
+          <div class="accordion__panel" id="panel-general" role="region" aria-labelledby="trigger-general" hidden>
+            <h4>Example Use Cases</h4>
+            <ul>
+              <li>Meeting summarization and action item tracking</li>
+              <li>Email triage and response drafting</li>
+              <li>Report generation and formatting</li>
+              <li>Employee onboarding documentation</li>
+              <li>Internal knowledge base management</li>
+              <li>Cross-team communication and updates</li>
+            </ul>
+            <h4>Desired Outcomes</h4>
+            <ul>
+              <li>Reduced time spent in meetings and follow-ups</li>
+              <li>Faster email response times</li>
+              <li>More consistent business reporting</li>
+              <li>Improved employee onboarding experience</li>
+              <li>Better cross-functional collaboration</li>
+            </ul>
+            <p class="fit-line">Good fit for: Any team looking to reduce repetitive work and improve productivity</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <!-- ==========================================
+       FOOTER CTA
+       ========================================== -->
+  <section class="footer-cta" aria-labelledby="cta-title">
+    <div class="container">
+      <h2 class="footer-cta__headline" id="cta-title">Ready to Get Started?</h2>
+      <p class="footer-cta__subtext">Have questions about Copilot, Copilot Studio, or how to bring AI-powered agents into your organization? Let's connect.</p>
+      <div class="footer-cta__card">
+        <span class="footer-cta__name">Durum Alarms</span>
+        <div class="footer-cta__links">
+          <a href="mailto:alarmsdurum@microsoft.com" class="footer-cta__link footer-cta__link--email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+            Email me
+          </a>
+          <a href="https://linkedin.com/in/durumalarms" target="_blank" rel="noopener noreferrer" class="footer-cta__link footer-cta__link--linkedin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zM6.825 20.452H3.838V9h2.987v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__disclaimer">
+          This page is provided for informational and enablement purposes. Product capabilities and
+          availability may vary by region and plan. All referenced trademarks are the property of their respective owners.
+        </p>
+        <p class="footer__bottom">&copy; 2025 Microsoft Corporation. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------
+         Personalized Greeting from URL Parameter
+         Usage: Add ?name=FirstName to the page URL.
+         Example: https://yoursite.github.io/?name=Sarah
+         If no name parameter, the default headline shows.
+         ------------------------------------------ */
+      var greetingEl = document.getElementById('hero-greeting');
+      if (greetingEl) {
+        var params = new URLSearchParams(window.location.search);
+        var name = params.get('name');
+        if (name) {
+          // Sanitize: strip HTML tags, limit length, trim whitespace
+          var clean = name.replace(/<[^>]*>/g, '').trim().substring(0, 50);
+          if (clean) {
+            greetingEl.textContent = clean + ', ';
+            greetingEl.className = 'hero__greeting';
+          }
+        }
+      }
+
+      /* ------------------------------------------
+         Mobile Navigation Toggle
+         ------------------------------------------ */
+      var navToggle = document.querySelector('.nav__toggle');
+      var mobileNav = document.getElementById('mobile-nav');
+
+      if (navToggle && mobileNav) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = mobileNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Close mobile nav when a link is clicked
+        mobileNav.querySelectorAll('.nav__mobile-link').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileNav.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* ------------------------------------------
+         Sticky Nav Shadow on Scroll
+         ------------------------------------------ */
+      var nav = document.getElementById('nav');
+      if (nav) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 10) {
+            nav.classList.add('nav--scrolled');
+          } else {
+            nav.classList.remove('nav--scrolled');
+          }
+        }, { passive: true });
+      }
+
+      /* ------------------------------------------
+         Accordion
+         ------------------------------------------ */
+      var triggers = document.querySelectorAll('.accordion__trigger');
+
+      triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          var expanded = this.getAttribute('aria-expanded') === 'true';
+          var panelId = this.getAttribute('aria-controls');
+          var panel = document.getElementById(panelId);
+
+          if (!panel) return;
+
+          if (expanded) {
+            this.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('hidden', '');
+          } else {
+            this.setAttribute('aria-expanded', 'true');
+            panel.removeAttribute('hidden');
+          }
+        });
+
+        // Keyboard support: Enter and Space are natively handled by <button>
+      });
+
+      /* ------------------------------------------
+         Smooth Scroll for Anchor Links
+         (Fallback for browsers without CSS scroll-behavior)
+         ------------------------------------------ */
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            var navHeight = document.getElementById('nav').offsetHeight;
+            var targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 24;
+
+            window.scrollTo({
+              top: targetPos,
+              behavior: 'smooth'
+            });
+
+            // Update URL without jumping
+            if (history.pushState) {
+              history.pushState(null, null, targetId);
+            }
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
